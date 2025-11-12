@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_name }} — {{ title or "Home" }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="min-h-screen flex flex-col text-slate-800">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+      <!-- Logo + App name -->
+      <a href="{{ url_for('index') }}" class="flex items-center gap-2 font-bold text-lg">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" class="h-8 w-8 rounded-full border" alt="SSRVM logo">
+        <span>{{ app_name }}</span>
+      </a>
+
+      <!-- NAVIGATION -->
+      <nav class="flex items-center gap-4">
+
+        {% if session.get('user') %}
+
+          <!-- Admin link only for admin -->
+          {% if session.get('user').email == "admin@ssrvm.com" %}
+            <a href="{{ url_for('admin') }}"
+               class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200 font-semibold text-indigo-700">
+              Admin
+            </a>
+          {% endif %}
+
+          <a href="{{ url_for('dashboard') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Dashboard
+          </a>
+
+          <a href="{{ url_for('journal') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Journal
+          </a>
+
+          <a href="{{ url_for('cbt') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            CBT
+          </a>
+
+          <a href="{{ url_for('grounding') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Grounding
+          </a>
+
+          <a href="{{ url_for('resources') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Resources
+          </a>
+
+          <!-- Correct chat link -->
+          <a href="{{ url_for('chatbot') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Chat
+          </a>
+
+          <a href="{{ url_for('profile') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Profile
+          </a>
+
+          <a href="{{ url_for('logout') }}" class="px-3 py-1 rounded bg-rose-100 hover:bg-rose-200 transition">
+            Logout
+          </a>
+
+        {% else %}
+
+          <a href="{{ url_for('login') }}" class="hover:underline hover:text-indigo-600 hover:scale-105 transition-all duration-200">
+            Login
+          </a>
+
+          <a href="{{ url_for('signup') }}" class="px-3 py-1 rounded bg-indigo-600 text-white shadow hover:opacity-90 transition">
+            Sign up
+          </a>
+
+        {% endif %}
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN BODY -->
+  <main class="flex-grow max-w-6xl mx-auto px-4 py-6">
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-4 p-3 rounded bg-amber-50 border text-sm">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t mt-auto">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-500">
+      <p><strong>Disclaimer:</strong> This app does not provide medical advice or crisis support. If you are in immediate danger, call your local emergency number.</p>
+      <p class="mt-2">© {{ year }} {{ app_name }}</p>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-4 right-4 bg-slate-900 text-white px-3 py-2 rounded">
+    Copied!
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set title = "Profile" %}
+{% block content %}
+<div class="grid md:grid-cols-2 gap-6">
+  <div class="card p-6">
+    <h2 class="text-xl font-bold mb-2">Your profile</h2>
+    <p><span class="label">Name:</span> {{ session.user.name }}</p>
+    <p><span class="label">Email:</span> {{ session.user.email }}</p>
+    <form method="post" action="{{ url_for('export_journal') }}" class="mt-4">
+      <button class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-700 text-white shadow hover:opacity-90 transition">Export journal (CSV)</button>
+    </form>
+  </div>
+  <div class="card p-6">
+    <h2 class="font-semibold mb-2">Counsellor requests</h2>
+    {% if requests %}
+      <ul class="space-y-2">
+        {% for r in requests %}
+          <li class="p-3 border rounded text-sm">
+            <div class="text-slate-500">{{ r.created_at }}</div>
+            <div>Wanted counsellor: <strong>{{ 'Yes' if r.want_counsellor else 'No' }}</strong></div>
+            <div class="text-slate-600">Message: {{ r.message or '—' }}</div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-slate-500">No requests yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% set title = "Welcome" %}
+
+{% block content %}
+<div class="fade-in">
+
+  <!-- School logo + name -->
+  <div class="text-center mb-8">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" class="mx-auto h-20 w-20 rounded-full shadow" alt="SSRVM Logo">
+    <h1 class="text-3xl font-bold mt-3">Sri Sri Ravishankar Vidya Mandir (SSRVM)</h1>
+  </div>
+
+  <!-- Main welcome section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- Left card -->
+    <div class="card p-8 fade-in">
+      <h2 class="text-2xl font-bold mb-3">SSRVM — A supportive mentor for student stress</h2>
+      <p class="text-slate-700">
+        Journal privately, reframe thoughts, try grounding tools, and chat with a gentle assistant that suggests coping strategies.
+        If you want, we can notify your counsellor.
+      </p>
+
+      <div class="mt-6 flex gap-3">
+        <a href="{{ url_for('signup') }}" class="px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-800 text-white shadow hover:opacity-90 transition">
+          Get started
+        </a>
+        <a href="{{ url_for('login') }}" class="px-6 py-3 rounded-full border border-indigo-600 text-indigo-600 hover:bg-indigo-100 transition">
+          I have an account
+        </a>
+      </div>
+    </div>
+
+    <!-- Right card: Features -->
+    <div class="card p-8 fade-in">
+      <h3 class="text-xl font-semibold mb-3">Features</h3>
+      <ul class="list-disc pl-6 text-slate-700 space-y-2">
+        <li>Private journal with prompts</li>
+        <li>CBT thought reframing helper</li>
+        <li>Breathing & grounding exercises</li>
+        <li>Supportive chat for coping & distractions</li>
+        <li>Ask to notify your counsellor (stored privately)</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

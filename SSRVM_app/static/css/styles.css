@@ -1,0 +1,82 @@
+/* Minimal extras on top of Tailwind */
+:root {
+  --card: 255 255 255;
+}
+html, body { height: 100%; }
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+}
+.card {
+  background: rgb(var(--card));
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(31,41,55,0.07);
+}
+.label { font-weight: 600; }
+textarea { resize: vertical; }
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  background: #eef2ff;
+}
+.bubble {
+  max-width: 75%;
+  border-radius: 1rem;
+  padding: .65rem .9rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+.bubble-user { background: #e0e7ff; margin-left: auto; }
+.bubble-bot { background: #fff; }
+.typing { font-style: italic; opacity: .7; }
+@keyframes breathe {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.breathe { animation: breathe 4s ease-in-out infinite; }
+
+
+/* --- Enhanced cards --- */
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,240,253,0.92));
+  border-radius: 1.2rem;
+  box-shadow: 0 12px 35px rgba(50,50,93,0.12), 0 6px 18px rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+}
+
+
+/* --- Colorful UI v4 Enhancements --- */
+body {
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  background-attachment: fixed;
+}
+
+.card {
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
