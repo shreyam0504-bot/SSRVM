@@ -47,7 +47,7 @@ from flask import (
 )
 
 # ---------------- App config ----------------
-APP_NAME = "SSRVM"
+APP_NAME = "SSRVM-BE"
 SECRET = os.environ.get("SSRVM_SECRET", "dev-secret-change-me")
 app = Flask(__name__)
 app.secret_key = SECRET
