@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% set title = "Profile" %}
+{% block content %}
+
+<div class="grid md:grid-cols-2 gap-8 fade-in">
+
+  <!-- USER PROFILE CARD -->
+  <div class="card p-6 fade-in">
+    <h2 class="text-2xl font-bold mb-4 text-indigo-300">Your Profile</h2>
+
+    <p class="mb-2">
+      <span class="label text-indigo-200">Name:</span>
+      <span class="text-slate-300">{{ session.user.name }}</span>
+    </p>
+
+    <p class="mb-4">
+      <span class="label text-indigo-200">Email:</span>
+      <span class="text-slate-300">{{ session.user.email }}</span>
+    </p>
+
+    <!-- Export journal button -->
+    <form method="post" action="{{ url_for('export_journal') }}" class="mt-4">
+      <button class="px-5 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-700
+                     text-white shadow-lg hover:scale-[1.03] transition">
+        Export Journal (CSV)
+      </button>
+    </form>
+  </div>
+
+
+  <!-- COUNSELLOR REQUESTS CARD -->
+  <div class="card p-6 fade-in">
+
+    <h2 class="text-2xl font-semibold mb-4 text-indigo-300">
+      Counsellor Requests
+    </h2>
+
+    {% if requests %}
+      <ul class="space-y-3">
+
+        {% for r in requests %}
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+
+          <!-- Timestamp -->
+          <div class="text-xs text-slate-400 mb-2">
+            {{ r.created_at }}
+          </div>
+
+          <!-- Want counsellor? -->
+          <div class="mb-1 text-slate-200">
+            Wanted counsellor:
+            {% if r.want_counsellor %}
+              <span class="text-green-400 font-semibold">Yes</span>
+            {% else %}
+              <span class="text-rose-400 font-semibold">No</span>
+            {% endif %}
+          </div>
+
+          <!-- Message -->
+          <div class="text-slate-300 text-sm whitespace-pre-wrap">
+            Message: {{ r.message or '—' }}
+          </div>
+
+        </li>
+        {% endfor %}
+
+      </ul>
+
+    {% else %}
+      <p class="text-slate-400">No requests yet.</p>
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}

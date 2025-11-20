@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% set title = "Grounding" %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto card p-6 text-center fade-in">
+
+  <h1 class="text-3xl font-bold mb-2 text-indigo-300 tracking-wide">
+    Breathing Exercise
+  </h1>
+
+  <p class="text-slate-300 mb-6">
+    Box Breathing — Inhale 4s • Hold 4s • Exhale 4s • Hold 4s
+  </p>
+
+  <!-- Breathing Circle -->
+  <div id="breathCircle"
+       class="mx-auto my-6 h-48 w-48 rounded-full 
+              bg-white/10 border border-white/20 
+              shadow-xl transition-all duration-700 backdrop-blur-sm">
+  </div>
+
+  <!-- Timer -->
+  <div id="breathing-timer"
+       class="text-3xl font-mono text-indigo-300 mb-4">
+       60s
+  </div>
+
+  <!-- Start Button -->
+  <button id="startBreathBtn"
+          class="px-6 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white  
+                 shadow-xl hover:scale-[1.05] hover:shadow-2xl transition-all duration-300">
+      Start 60s
+  </button>
+
+</div>
+
+
+<!-- ========== BREATHING LOGIC (unchanged) ========== -->
+<script>
+function speakText(text){
+    try{
+        let u = new SpeechSynthesisUtterance(text);
+        u.rate = 0.85;
+        u.pitch = 1.0;
+        speechSynthesis.speak(u);
+    }catch(e){ console.warn("TTS not available", e); }
+}
+
+async function runBreathingCycle(durationSec=60){
+    const circle = document.getElementById("breathCircle");
+    const timer  = document.getElementById("breathing-timer");
+
+    const stage = 4000;
+    const end = Date.now() + durationSec * 1000;
+
+    while(Date.now() < end){
+        timer.innerText = Math.ceil((end - Date.now())/1000) + "s";
+
+        // INHALE
+        speakText("Inhale");
+        circle.style.transform = "scale(1.35)";
+        circle.style.boxShadow = "0 0 25px rgba(139,92,246,0.5)";
+        await new Promise(r=>setTimeout(r, stage));
+
+        // HOLD
+        speakText("Hold");
+        await new Promise(r=>setTimeout(r, stage));
+
+        // EXHALE
+        speakText("Exhale");
+        circle.style.transform = "scale(1)";
+        circle.style.boxShadow = "0 0 10px rgba(255,255,255,0.1)";
+        await new Promise(r=>setTimeout(r, stage));
+
+        // HOLD
+        speakText("Hold");
+        await new Promise(r=>setTimeout(r, stage));
+    }
+
+    speakText("Finished. Well done.");
+    circle.style.transform = "scale(1)";
+    timer.innerText = "Done";
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    const startBtn = document.getElementById("startBreathBtn");
+    const timer = document.getElementById("breathing-timer");
+    let countdownId = null;
+
+    if(startBtn && timer){
+        startBtn.addEventListener("click", ()=>{
+            // stop any existing speech and countdown
+            speechSynthesis.cancel();
+            if (countdownId) clearInterval(countdownId);
+
+            let remaining = 60;
+            timer.innerText = remaining + "s";
+
+            // visual 1-second countdown
+            countdownId = setInterval(()=>{
+                remaining -= 1;
+                if (remaining <= 0){
+                    clearInterval(countdownId);
+                    timer.innerText = "0s";
+                } else {
+                    timer.innerText = remaining + "s";
+                }
+            }, 1000);
+
+            // run existing breathing animation + voice guidance
+            runBreathingCycle(60).then(()=>{
+                // ensure it ends cleanly at 0s
+                if (timer.innerText !== "0s"){
+                    timer.innerText = "0s";
+                }
+            }).catch(()=>{});
+        });
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_name }} — {{ title or "Home" }}</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-slate-900 to-slate-800 text-slate-200">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/10 border-b border-white/10 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+      <a href="{{ url_for('index') }}" class="flex items-center gap-2 font-bold text-lg text-white">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" class="h-8 w-8 rounded-full border border-white/20" alt="SSRVM logo">
+        <span>{{ app_name }}</span>
+      </a>
+
+      <nav class="flex items-center gap-4 text-slate-200 font-medium">
+
+        {% if session.get('user') %}
+
+          {% if session.get('user').email == "admin@ssrvm.com" %}
+            <a href="{{ url_for('admin') }}" class="hover:text-indigo-300 transition">Admin</a>
+          {% endif %}
+
+          <a href="{{ url_for('dashboard') }}" class="hover:text-indigo-300 transition">Dashboard</a>
+          <a href="{{ url_for('journal') }}" class="hover:text-indigo-300 transition">Journal</a>
+          <a href="{{ url_for('cbt') }}" class="hover:text-indigo-300 transition">CBT</a>
+          <a href="{{ url_for('grounding') }}" class="hover:text-indigo-300 transition">Grounding</a>
+          <a href="{{ url_for('resources') }}" class="hover:text-indigo-300 transition">Resources</a>
+          <a href="{{ url_for('chatbot') }}" class="hover:text-indigo-300 transition">Chat</a>
+          <a href="{{ url_for('profile') }}" class="hover:text-indigo-300 transition">Profile</a>
+
+          <a href="{{ url_for('logout') }}" class="px-3 py-1 rounded bg-rose-500 text-white hover:bg-rose-600 transition">Logout</a>
+
+        {% else %}
+          <a href="{{ url_for('login') }}" class="hover:text-indigo-300 transition">Login</a>
+          <a href="{{ url_for('signup') }}" class="px-3 py-1 rounded bg-indigo-600 text-white hover:bg-indigo-500 transition">Sign up</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl mx-auto px-4 py-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="border-t border-white/10 mt-auto bg-white/5">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-400">
+      <p><strong>Disclaimer:</strong> This app does not provide medical advice or crisis support.</p>
+      <p class="mt-2">© {{ year }} {{ app_name }}</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
