@@ -27,4 +27,3 @@ SSRVM is a supportive mentor-style web app for students:
 
 - Data stored locally in `data/ssrvm.db` (SQLite).
 - You can export your journal as CSV from **Profile**.
-- Chat assistant is local & rule-based (no external APIs).
