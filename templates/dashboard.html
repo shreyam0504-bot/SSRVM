@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% set title = "Dashboard" %}
+{% block content %}
+
+<!-- FULL-WIDTH GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6 py-6 w-full">
+
+  <!-- LEFT PANEL — EXPANDED -->
+  <div class="card p-6 w-full">
+
+    <h2 class="text-2xl font-bold mb-2">Hello, {{ session.user.name }}</h2>
+    <p class="text-base text-slate-500 mb-6">
+      Welcome to SSRVM-BE. Choose a tool below:
+    </p>
+
+    <!-- QUICK ACTION BUTTONS (BIGGER, FIT PAGE) -->
+    <div class="grid grid-cols-2 gap-4 text-base">
+
+      <a href="{{ url_for('chatbot') }}"
+         class="p-4 rounded-xl bg-indigo-900/20 border border-indigo-700/20 hover:bg-indigo-700/30 transition">
+        💬 Chat Support
+      </a>
+
+      <a href="{{ url_for('cbt') }}"
+         class="p-4 rounded-xl bg-indigo-900/20 border border-indigo-700/20 hover:bg-indigo-700/30 transition">
+        🧠 CBT Reframe
+      </a>
+
+      <a href="{{ url_for('journal') }}"
+         class="p-4 rounded-xl bg-indigo-900/20 border border-indigo-700/20 hover:bg-indigo-700/30 transition">
+        📘 Write a Journal
+      </a>
+
+      <a href="{{ url_for('resources') }}"
+         class="p-4 rounded-xl bg-indigo-900/20 border border-indigo-700/20 hover:bg-indigo-700/30 transition">
+        📚 Resources
+      </a>
+
+      <a href="{{ url_for('grounding') }}"
+         class="p-4 rounded-xl bg-indigo-900/20 border border-indigo-700/20 hover:bg-indigo-700/30 transition col-span-2">
+        🫁 Breathing & Grounding
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL — EXPANDED -->
+  <div class="space-y-6 w-full">
+
+    <div class="card p-6 w-full">
+      <h2 class="text-xl font-semibold">Daily Reflection Prompt</h2>
+      <p class="text-base mt-2 text-slate-600">{{ prompt }}</p>
+    </div>
+
+    <div class="card p-6 w-full">
+      <h2 class="text-xl font-semibold">Motivational Quote</h2>
+      <p class="text-base mt-2 text-slate-600">{{ quote }}</p>
+    </div>
+
+    <div class="card p-6 w-full">
+      <h2 class="text-xl font-semibold">Emotion Summary</h2>
+      <p class="text-base mt-2 text-slate-600">{{ emotion_summary }}</p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

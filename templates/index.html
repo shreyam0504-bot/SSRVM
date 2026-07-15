@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% set title = "Welcome" %}
+
+{% block content %}
+
+<div class="fade-in">
+
+  <!-- Logo + Name -->
+  <div class="text-center mb-10">
+    <img src="{{ url_for('static', filename='img/logo.png') }}"
+         class="mx-auto h-24 w-24 rounded-full shadow-xl border border-white/20"
+         alt="SSRVM Logo">
+
+    <h1 class="text-3xl font-bold mt-4 text-indigo-300 tracking-wide">
+      Sri Sri Ravishankar Vidya Mandir Bangalore East (SSRVM-BE)
+    </h1>
+  </div>
+
+  <!-- Main Section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+    <!-- LEFT CARD -->
+    <div class="card p-8 fade-in">
+      <h2 class="text-2xl font-bold mb-4 text-indigo-300">
+        SSRVM-BE — Your supportive companion for student well-being
+      </h2>
+
+      <p class="text-slate-300 leading-relaxed">
+        Journal privately, reframe thoughts, explore grounding tools, and chat with a gentle 
+        assistant built to support emotional wellness.  
+        If needed, you can request your counsellor to be notified.
+      </p>
+
+      <div class="mt-8 flex gap-4">
+        <a href="{{ url_for('signup') }}"
+           class="px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-700 
+                  text-white shadow-lg hover:scale-[1.03] transition">
+          Get Started
+        </a>
+
+        <a href="{{ url_for('login') }}" class="px-6 py-3 rounded-full border border-indigo-400 text-indigo-300 hover:bg-indigo-900 transition">
+           I have an account
+        </a>
+
+      </div>
+    </div>
+
+    <!-- RIGHT CARD: FEATURES -->
+    <div class="card p-8 fade-in">
+      <h3 class="text-2xl font-semibold mb-4 text-indigo-300">Features</h3>
+
+      <ul class="list-disc pl-6 text-slate-300 space-y-3 leading-relaxed">
+        <li>Private guided journal</li>
+        <li>CBT-based thought reframing tool</li>
+        <li>Breathing & grounding exercises</li>
+        <li>AI chat for support, coping & calming tips</li>
+        <li>Optional counsellor notifications (secure & private)</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

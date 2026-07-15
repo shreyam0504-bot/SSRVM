@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% set title = "CBT Helper" %}
+{% block content %}
+
+<div class="max-w-3xl mx-auto card p-6 fade-in">
+
+  <h1 class="text-2xl font-bold mb-4 text-indigo-300">Thought Reframing</h1>
+
+  <form method="post" class="space-y-4">
+
+    <div>
+      <label class="label text-indigo-200">What happened?</label>
+      <input name="situation" 
+             class="w-full rounded-lg p-3 bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             placeholder="E.g., I got a low grade on a quiz">
+    </div>
+
+    <div>
+      <label class="label text-indigo-200">Automatic thought</label>
+      <input name="thought" 
+             class="w-full rounded-lg p-3 bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             placeholder="I'm a failure">
+    </div>
+
+    <div>
+      <label class="label text-indigo-200">Feeling (0–10)</label>
+      <input name="feeling" type="number" min="0" max="10"
+             class="w-full rounded-lg p-3 bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+
+    <button class="px-6 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-700 text-white shadow-lg hover:scale-[1.03] transition">
+      Reframe
+    </button>
+
+  </form>
+
+
+  {% if reframe %}
+    <div class="mt-8 p-5 rounded-xl border border-indigo-500/30 bg-indigo-900/30 shadow-xl backdrop-blur-sm fade-in">
+      <h3 class="font-semibold text-indigo-300 mb-2 text-lg">Gentle reframe</h3>
+      <p class="text-slate-200 leading-relaxed">{{ reframe }}</p>
+    </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

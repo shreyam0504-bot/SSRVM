@@ -1,0 +1,279 @@
+/* ===========================================
+   ✨ SSRVM-BE – SOOTHING DARK MODE THEME (FINAL CLEAN VERSION)
+   =========================================== */
+
+/* ---- COLOR VARIABLES ---- */
+
+:root{
+  --bg1: #d4edff;        /* soft sky blue top */
+  --bg2: #eaf6ff;        /* lighter sky blue bottom */
+  --card-bg: #b7d5ef;    /* slightly darker sky-blue cards */
+  --muted: #475569;      /* muted text */
+  --text: #1e293b;       /* dark slate readable text */
+  --heading: #3c4fcf;    /* school-blue heading */
+  --accent1: #6366f1;    /* pastel purple */
+  --accent2: #7c3aed;    /* deeper pastel accent */
+}
+
+/* ---- GLOBAL ---- */
+html, body {
+    background: linear-gradient(to bottom, #d4edff, #eaf6ff) !important;
+}
+
+body {
+    background: linear-gradient(to bottom, #d4edff, #eaf6ff) !important;
+}
+
+a, a:visited { color: var(--accent2); }
+a:hover       { color: var(--accent1); }
+
+h1,h2,h3,h4,h5,h6 { color: var(--text); }
+
+p, li, span, label, small, input, textarea, td, th {
+  color: var(--muted);
+}
+
+/* ---- NAVBAR ---- */
+.nav-container,
+header.sticky {
+  background: rgba(255,255,255,0.04) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ---- CARDS ---- */
+.card {
+  width: 100% !important;        
+  max-width: 100% !important;    
+  background: var(--card-bg);
+  color: var(--text);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+}
+
+/* ---- BUTTONS ---- */
+.btn, button {
+  background: linear-gradient(135deg,var(--accent2),var(--accent1));
+  color: white !important;
+  border: none;
+  padding: 8px 16px;
+  border-radius: .75rem;
+  transition: .25s ease;
+}
+
+.btn:hover, button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+/* ---- CHAT BUBBLES ---- */
+.bubble {
+  max-width: 75%;
+  border-radius: 1rem;
+  padding: .65rem .9rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  color: var(--text);
+  backdrop-filter: blur(8px);
+}
+
+.bubble-user { 
+  background: rgba(139,92,246,0.25);
+  margin-left: auto;
+}
+
+.bubble-bot {
+  background: rgba(255,255,255,0.07);
+}
+
+.typing { 
+  font-style: italic; 
+  opacity: .7; 
+}
+
+/* ---- DISCLAIMER ---- */
+footer, .disclaimer { 
+  color: #94a3b8 !important; 
+}
+
+/* ---- BADGES ---- */
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+
+/* ---- BREATHING ANIMATION ---- */
+@keyframes breathe {
+  0%   { transform: scale(1);   opacity: 1;   }
+  50%  { transform: scale(1.12); opacity: 0.9; }
+  100% { transform: scale(1);   opacity: 1;   }
+}
+
+.breathe { animation: breathe 4s ease-in-out infinite; }
+
+.breath-circle { 
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  margin:22px auto;
+  transition: transform 1s ease;
+}
+
+/* ---- Fade In ---- */
+.fade-in {
+  animation: fadeIn .6s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- TABLES (Admin Dashboard) ---- */
+table {
+  background: rgba(255,255,255,0.03);
+}
+
+thead {
+  background: linear-gradient(135deg,var(--accent2),var(--accent1)) !important;
+}
+
+thead th {
+  color: white !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.06);
+  transition: .2s;
+}
+
+td { color: var(--muted) !important; }
+
+.card, .glass-card { background: var(--card-bg)!important; backdrop-filter: blur(12px); }
+
+#breathing-timer, .breath-text { color: var(--text)!important; }
+
+.card, .glass-card, .text-slate-300, .text-slate-200, .text-indigo-300 {
+    color: var(--text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading) !important;
+}
+
+.card, .glass-card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    color: var(--text) !important;
+}
+
+p, span, li, label, input, textarea {
+    color: var(--text) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading) !important;
+}
+
+.card, .glass-card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    color: var(--text) !important;
+}
+
+p, span, li, label, input, textarea {
+    color: var(--text) !important;
+}
+
+button, 
+a.btn, 
+a.button, 
+button span, 
+a span, 
+.btn span, 
+button *, 
+a.btn * {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+button, a.btn, a.button, .btn {
+    color: #ffffff !important;
+}
+
+button span, a.btn span, a.button span {
+    color: #ffffff !important;
+}
+
+/* Force button text to stay visible */
+button,
+a.btn,
+a.button,
+a[href*="login"],
+a[href*="signup"],
+a[href*="get"],
+.btn,
+button *,
+.btn *,
+a.btn *,
+a.button * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* =======================================================
+   ⭐ FINAL FIX ADDED — KEEP ALL OTHER TEXT DARK
+   ======================================================= */
+
+/* All normal text, links, navbar, etc → dark */
+body *:not(.btn):not(button):not(.purple-btn):not(.signup-btn):not(.btn *):not(button *) {
+    color: var(--text) !important;
+}
+
+/* Only Get Started + Sign Up stay white */
+.purple-btn,
+.signup-btn,
+.purple-btn *,
+.signup-btn * {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ===============================================
+   FIX → Make "I have an account" & "Login" darker
+   =============================================== */
+
+a[href*="login"],
+a[href*="account"],
+a.nav-link,
+.header-login,
+.header-login *,
+a[href="/login"],
+a[href="/account"] {
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+    font-weight: 600 !important;
+}
+
+/* Make sure only gradient buttons stay white */
+button.btn,
+a.btn.gradient,
+.purple-btn,
+.signup-btn {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}

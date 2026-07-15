@@ -50,3 +50,28 @@ function confetti() {
     setTimeout(() => piece.remove(), 1200);
   }
 }
+
+// --- FIXED COUNTDOWN LOGIC (Guaranteed Working) ---
+document.addEventListener("DOMContentLoaded", () => {
+    const startBtn = document.getElementById("breathing-start");
+    const timer = document.getElementById("breathing-timer");
+    const bubble = document.querySelector(".breath-circle");
+
+    if(startBtn && timer && bubble){
+        startBtn.addEventListener("click", () => {
+            let remaining = 60;
+            timer.textContent = remaining + "s";
+
+            const interval = setInterval(() => {
+                remaining--;
+                if(remaining <= 0){
+                    timer.textContent = "Done";
+                    bubble.style.transform = "scale(1)";
+                    clearInterval(interval);
+                } else {
+                    timer.textContent = remaining + "s";
+                }
+            }, 1000);
+        });
+    }
+});

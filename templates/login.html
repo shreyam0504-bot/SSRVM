@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% set title = "Login" %}
+{% block content %}
+
+<div class="max-w-md mx-auto card p-8 fade-in">
+
+  <h1 class="text-3xl font-bold mb-6 text-indigo-300 text-center">
+    Welcome Back
+  </h1>
+
+  <form method="post" class="space-y-5">
+
+    <!-- Email -->
+    <div>
+      <label class="label text-indigo-200">Email</label>
+      <input name="email" type="email" required
+             class="w-full rounded-xl p-3 bg-white/5 border border-white/10 
+                    text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             placeholder="you@college.edu">
+    </div>
+
+    <!-- Password -->
+    <div>
+      <label class="label text-indigo-200">Password</label>
+      <input name="password" type="password" required
+             class="w-full rounded-xl p-3 bg-white/5 border border-white/10
+                    text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             placeholder="••••••••">
+    </div>
+
+    <!-- Login Button -->
+    <button class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-700 
+                   text-white shadow-lg hover:scale-[1.03] transition">
+      Login
+    </button>
+
+  </form>
+
+  <p class="mt-6 text-center text-sm text-slate-400">
+    No account?
+    <a href="{{ url_for('signup') }}" class="text-indigo-400 underline hover:text-indigo-300">
+      Sign up
+    </a>
+  </p>
+
+</div>
+
+{% endblock %}
