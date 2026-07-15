@@ -1,5 +1,14 @@
+# Environment variables
 .env
+
+# Python
 __pycache__/
 *.pyc
 venv/
 .venv/
+
+# Database
+*.db
+
+# Generated CSV files
+*.csv
